@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unique Keyboard Tester with Real Articles</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #f06, #48f);
+        margin: 0;
+        padding: 20px;
+        color: #fff;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 2.2em;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+    }
+
+    #keyboard {
+        display: grid;
+        grid-gap: 8px;
+        justify-content: center;
+        margin-bottom: 40px;
+    }
+
+    .key {
+        background: #222;
+        color: #fff;
+        border-radius: 15px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.2s;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    }
+
+    .key.active {
+        background: #ffdd57;
+        color: #000;
+        transform: scale(1.2);
+        box-shadow: 0 0 15px #ffdd57;
+    }
+
+    /* Articles Section */
+    #articles {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        text-align: left;
+    }
+
+    .article-card {
+        background: rgba(255,255,255,0.1);
+        padding: 15px;
+        border-radius: 10px;
+        transition: 0.3s;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+        cursor: pointer;
+    }
+
+    .article-card:hover {
+        background: rgba(255,255,255,0.2);
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.6);
+    }
+
+    .article-card h3 {
+        margin-top: 0;
+        color: #ffd700;
+        font-size: 1em;
+    }
+
+    .article-card.green {
+        background: #4caf50 !important;
+        color: #fff !important;
+        box-shadow: 0 0 10px #4caf50 !important;
+    }
+</style>
+</head>
+<body>
+
+<h1>Unique Keyboard Tester</h1>
+<div id="keyboard"></div>
+
+<h2>Articles Section</h2>
+<div id="articles"></div>
+
+<script>
+    // Unique keyboard layout
+    const uniqueLayout = [
+        ["Q","W","E","R","T","Y","U","I","O","P"],
+        ["A","S","D","F","G","H","J","K","L"],
+        ["Z","X","C","V","B","N","M"],
+        ["1","2","3","4","5","6","7","8","9","0"],
+        ["!","@","#","$","%","^","&","*","(",")"]
+    ];
+
+    const keyboard = document.getElementById("keyboard");
+    const maxCols = Math.max(...uniqueLayout.map(r => r.length));
+    keyboard.style.gridTemplateColumns = `repeat(${maxCols}, 60px)`;
+
+    uniqueLayout.flat().forEach(key => {
+        const div = document.createElement("div");
+        div.classList.add("key");
+        div.textContent = key;
+        div.id = "key-" + key.toLowerCase();
+        keyboard.appendChild(div);
+
+        // Click to highlight permanently
+        div.addEventListener("click", () => {
+            div.classList.add("active");
+        });
+    });
+
+    // Keyboard physical key press
+    document.addEventListener("keydown", e => {
+        const keyId = "key-" + e.key.toLowerCase();
+        const keyElement = document.getElementById(keyId);
+        if (keyElement) keyElement.classList.add("active");
+    });
+
+    document.addEventListener("keyup", e => {
+        const keyId = "key-" + e.key.toLowerCase();
+        const keyElement = document.getElementById(keyId);
+        if (keyElement) keyElement.classList.remove("active");
+    });
+
+    // 60 Real Articles
+    const articlesList = [
+        "Top 10 Mechanical Keyboards for Typing in 2025",
+        "How to Improve Your Typing Speed in 30 Days",
+        "Understanding Keyboard Layouts: QWERTY vs AZERTY",
+        "Ergonomic Keyboard Tips for Long Typing Sessions",
+        "Top 5 Gaming Keyboards for Professional Gamers",
+        "How to Clean Your Keyboard Without Damaging It",
+        "The History of the Keyboard: From Typewriter to Modern PC",
+        "Shortcut Keys Every Windows User Should Know",
+        "Keyboard Shortcuts for Mac Users",
+        "Mechanical vs Membrane Keyboards: Which Should You Buy?",
+        "How to Fix Sticky Keys on Your Keyboard",
+        "Best Keyboards for Programmers in 2025",
+        "10 Tips to Prevent Keyboard Wear and Tear",
+        "How to Type Faster Without Sacrificing Accuracy",
+        "Top 7 Wireless Keyboards You Can Trust",
+        "How to Customize Keyboard Backlighting",
+        "Top 5 Foldable and Portable Keyboards for Travel",
+        "How to Use Keyboard Shortcuts in Microsoft Excel",
+        "Keyboard Typing Games to Improve Your Speed",
+        "Why Mechanical Keyboards Are Worth the Investment",
+        "Best Budget Keyboards That Don’t Feel Cheap",
+        "How to Remap Keys on Windows and Mac",
+        "The Science Behind Touch Typing",
+        "10 Keyboard Accessories You Didn’t Know You Needed",
+        "Keyboard Shortcuts for Web Browsing Efficiency",
+        "How to Test Your Keyboard for Faulty Keys",
+        "The Best Keyboards for Left-Handed Users",
+        "How to Protect Your Keyboard from Spills",
+        "Top 5 RGB Keyboards That Look Amazing",
+        "Keyboard Layouts Around the World",
+        "How to Type Accurately Without Looking at the Keys",
+        "Why Keyboard Shortcuts Improve Productivity",
+        "The Best Gaming Keycaps to Upgrade Your Keyboard",
+        "How to Troubleshoot Keyboard Lag in Games",
+        "The Importance of Keyboard Maintenance",
+        "Top Mechanical Switch Types Explained",
+        "How to Choose the Right Keyboard for Office Work",
+        "Why Some Keyboards Feel More Satisfying Than Others",
+        "The Future of Keyboards: Virtual and Projection Keyboards",
+        "Keyboard Shortcuts for Google Docs",
+        "How to Create a Minimalist Keyboard Setup",
+        "Best Keyboards for MacBook Users",
+        "Keyboard Shortcuts for Photoshop Beginners",
+        "How to Replace Keycaps on a Mechanical Keyboard",
+        "The Top Keyboards for Writers and Bloggers",
+        "How to Adjust Keyboard Repeat Rate on Windows",
+        "The Best Silent Keyboards for Quiet Environments",
+        "Keyboard Accessories That Improve Posture",
+        "How to Detect Ghosting on Your Keyboard",
+        "Top Foldable Keyboards for Mobile Devices",
+        "How to Use Keyboard Macros for Gaming",
+        "Best Keyboards for Students on a Budget",
+        "Keyboard Customization Software You Should Try",
+        "Why Ergonomic Keyboards Reduce Pain",
+        "Top 5 Keyboards for Streamers",
+        "How to Organize a Clean Keyboard Setup",
+        "The Best Keyboards for Programmers",
+        "How to Protect Your Keyboard from Dust",
+        "Top Keyboards with N-Key Rollover",
+        "How to Type Faster With Proper Finger Placement"
+    ];
+
+    const articlesContainer = document.getElementById("articles");
+    articlesList.forEach((title, index) => {
+        const card = document.createElement("div");
+        card.classList.add("article-card");
+        card.innerHTML = `<h3>${title}</h3><p>This article covers tips, guides, or reviews related to keyboards and typing. Article number ${index+1}.</p>`;
+        // Click to turn green
+        card.addEventListener("click", () => card.classList.add("green"));
+        articlesContainer.appendChild(card);
+    });
+</script>
+
+</body>
+</html>
